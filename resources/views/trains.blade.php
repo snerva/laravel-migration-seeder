@@ -8,30 +8,47 @@
     </div>
 
     <div class="conatiner">
-        <div class="row">
-            <div class="col">
+        <div class="row row-cols-5 g-4">
+            @forelse($trains as $train)
+            <div class="col p-3">
                 <div class="card">
                     <img class="card-img-top" src="" alt="">
                     <div class="card-body">
-                        <h4 class="card-title">Azienda</h4>
+                        <h4 class="card-title">{{$train->train_companies}}</h4>
                         <div class="train_details">
-                            <h4>code</h4>
-                            <p><strong>Railway coaches:</strong></p>
+                            <h4>{{$train->train_code}}</h4>
+                            <p><strong>Railway coaches:</strong>{{$train->railway_coaches}}</p>
                         </div>
                         <div class="card_info d-flex justify-content-between align-items-center">
                             <div class="departure">
-                                <h4>partenza</h4>
-                                <p>orario</p>
+                                <h4>{{$train->train_station_from}}</h4>
+                                <p>{{$train->departure_hour}}</p>
                             </div>
                             <div class="arrival">
-                                <h4>arrivo</h4>
-                                <p>orario</p>
+                                <h4> {{$train->train_station_to}}</h4>
+                                <p>{{$train->arrival_hour}}</p>
                             </div>
+                        </div>
+                        <div class="train_info">
+                            @if($train->on_time == true)
+                            <strong>On Time</strong>
+                            @else
+                            <strong>Delay</strong>
+                            @endif
+
+                            @if($train->cancelled == true)
+                            <h4>Cancelled</h4>
+                            @else
+                            <h4>Confirmed</h4>
+                            @endif
                         </div>
 
                     </div>
                 </div>
             </div>
+            @empty
+            <h2>No trains to show now</h2>
+            @endforelse
         </div>
     </div>
 </div>

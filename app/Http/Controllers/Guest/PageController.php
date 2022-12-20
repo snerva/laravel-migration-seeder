@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Guest;
 
+use App\Models\Train;
 use App\Http\Controllers\Controller;
+
 
 
 class PageController extends Controller
@@ -14,6 +16,8 @@ class PageController extends Controller
 
     public function trains()
     {
-        return view('trains');
+        $trains = Train::all();
+        //dd($trains);
+        return view('trains', compact('trains'));
     }
 }

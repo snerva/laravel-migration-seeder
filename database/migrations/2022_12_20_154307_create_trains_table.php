@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('train_companies', 20);
             $table->string('train_station_from', 30);
             $table->string('train_station_to', 30);
-            $table->dateTime('departure_hour',);
-            $table->dateTime('arrival_hour');
-            $table->smallInteger('train_code');
+            $table->DateTime('departure_hour',);
+            $table->DateTime('arrival_hour');
+            $table->string('train_code');
             $table->tinyInteger('railway_coaches');
-            $table->boolean('on_time')->default(1);
-            $table->string('cancelled', 10);
+            $table->boolean('on_time')->default(true);
+            $table->boolean('cancelled')->default(false);
             $table->timestamps();
         });
     }
